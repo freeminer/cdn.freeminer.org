@@ -10,6 +10,13 @@ COLOR_STATUS = "\033[94m"
 COLOR_DIM = "\033[90m"
 
 
+ALLOWED_EXTENSIONS = set([
+	".png", ".jpg", ".bmp", ".tga",
+	".pcx", ".ppm", ".psd", ".wal", ".rgb",
+	".ogg", ".x", ".b3d", ".md2", ".obj"
+])
+
+
 def sha1(filename):
 	f = open(filename, "rb")
 	h = hashlib.sha1(f.read()).hexdigest()
@@ -29,7 +36,7 @@ def collect_static(path):
 	count = 0
 	for name in os.listdir(path):
 		file_path = os.path.join(path, name)
-		if os.path.isfile(file_path):
+		if os.path.isfile(file_path) and os.path.splitext(file_path)[1] in ALLOWED_EXTENSIONS:
 			copy_static(file_path)
 			count += 1
 	if count:
