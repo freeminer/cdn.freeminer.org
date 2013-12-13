@@ -1,3 +1,5 @@
 data
 mods
 __pycache__
+*.pyc
+env
